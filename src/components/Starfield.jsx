@@ -4,7 +4,19 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+const buildShootingStars = (count = 2) =>
+  Array.from({ length: count }).map((_, index) => ({
+    id: `${Date.now()}-${index}`,
+    top: Math.random() * 70 + 6,
+    left: Math.random() * 60 + 6,
+    length: Math.random() * 120 + 80,
+    travel: Math.random() * 180 + 120,
+    delay: Math.random() * 1.5,
+    duration: Math.random() * 1.6 + 1.1,
+    angle: Math.random() * 18 + 20,
+  }));
 
 const Starfield = ({ active }) => {
   const prefersReducedMotion = useReducedMotion();
@@ -22,21 +34,30 @@ const Starfield = ({ active }) => {
         delay: Math.random() * 4,
         scale: Math.random() * 1.4 + 0.6,
         blur: Math.random() * 2,
+        driftX: Math.random() * 8 - 4,
+        driftY: Math.random() * 8 - 4,
       })),
     [],
+  );
+  const [shootingStars, setShootingStars] = useState(() =>
+    buildShootingStars(2),
   );
 
-  const streaks = useMemo(
-    () =>
-      Array.from({ length: 3 }).map((_, index) => ({
-        id: index,
-        top: Math.random() * 70 + 10,
-        left: Math.random() * 60 + 10,
-        delay: Math.random() * 6,
-        duration: Math.random() * 4 + 6,
-      })),
-    [],
-  );
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    let timeoutId;
+
+    const schedule = () => {
+      const delay = Math.random() * 6000 + 4000;
+      timeoutId = setTimeout(() => {
+        setShootingStars(buildShootingStars(2));
+        schedule();
+      }, delay);
+    };
+
+    schedule();
+    return () => clearTimeout(timeoutId);
+  }, [prefersReducedMotion]);
 
   const containerStyle = prefersReducedMotion ? {} : { y: drift };
 
@@ -64,6 +85,8 @@ const Starfield = ({ active }) => {
                 : {
                     opacity: [star.opacity, 1, star.opacity],
                     scale: [1, star.scale, 1],
+                    x: [0, star.driftX, 0],
+                    y: [0, star.driftY, 0],
                   }
             }
             transition={
@@ -79,17 +102,24 @@ const Starfield = ({ active }) => {
           />
         ))}
       </div>
-      {streaks.map((streak) => (
+      {shootingStars.map((streak) => (
         <motion.span
           key={streak.id}
-          className="absolute h-px w-32 rotate-[25deg] bg-gradient-to-r from-transparent via-white/70 to-transparent"
-          style={{ top: `${streak.top}%`, left: `${streak.left}%` }}
+          className="absolute h-px bg-gradient-to-r from-transparent via-white/80 to-transparent"
+          style={{
+            top: `${streak.top}%`,
+            left: `${streak.left}%`,
+            width: `${streak.length}px`,
+            rotate: streak.angle,
+          }}
+          initial={{ opacity: 0, x: 0, y: 0 }}
           animate={
             prefersReducedMotion
               ? undefined
               : {
                   opacity: [0, 1, 0],
-                  x: [0, 120],
+                  x: [0, streak.travel],
+                  y: [0, streak.travel * 0.4],
                 }
           }
           transition={
@@ -98,7 +128,6 @@ const Starfield = ({ active }) => {
               : {
                   duration: streak.duration,
                   delay: streak.delay,
-                  repeat: Infinity,
                   ease: "easeOut",
                 }
           }

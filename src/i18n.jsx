@@ -10,110 +10,130 @@ const en = {
     close: "Close",
   },
   hero: {
-    greeting: "Hello, I'm Basher",
-    title: "UX/UI Designer & Frontend Engineer",
-    bio: "I design and build digital products with a clear system, strong visual identity and clean code. The goal is simple: interfaces that feel premium and respond fast.",
+    greeting: "Hello, I'm Brayan Ulises",
+    title: "Full Stack Developer | React, Node.js & SQL",
+    bio: "Computer Systems Engineer with 3+ years across the full software lifecycle using JavaScript and .NET. Focused on scalable interfaces, performance optimization, and SQL data architecture. Currently pursuing an M.S. in Statistical and Computational Analysis (Data Science) at CIMAT. Based in Aguascalientes, Mexico.",
     cardCaption:
-      "UX, UI, strategy and code with a focus on clarity, performance and product value.",
+      "Full stack delivery, UI architecture, performance tuning, and SQL data design.",
+    photoAlt: "Portrait of Brayan Ulises",
     viewProjects: "View projects",
     directContact: "Direct contact",
-    nebulaMode: "Nebula mode active",
-    openCollab: "Open to new collaborations",
+    nebulaMode: "Signal mode active",
+    openCollab: "Open to full stack roles and collaborations",
     skills: [
-      "Product strategy",
-      "Design systems",
-      "React engineering",
-      "Motion design",
+      "Full stack React + Node",
+      "SQL Server & data design",
+      "GraphQL APIs",
+      "AI-assisted development",
+    ],
+    highlights: [
+      {
+        title: "INEGI design system",
+        description:
+          "React + Storybook library that unified UI across multiple internal apps.",
+      },
+      {
+        title: "Ptracking performance",
+        description:
+          "90% faster load times with server-side filtering and pagination.",
+      },
+      {
+        title: "SNI data platform",
+        description:
+          "Normalized SQL schema to improve data integrity and reporting.",
+      },
     ],
     stats: {
       experience: "Years experience",
-      clients: "Clients",
-      projects: "Projects",
-      awards: "Awards",
+      clients: "Organizations",
+      projects: "Key projects",
+      awards: "Degrees",
     },
   },
   projects: {
     eyebrow: "Projects",
-    title: "Featured work gallery",
+    title: "Selected engineering work",
     subtitle:
-      "A curated selection of digital products, dashboards and visual systems focused on impact and clarity.",
+      "Public-sector and private solutions focused on performance, automation, and data clarity.",
     items: [
       {
-        title: "Orion Commerce Suite",
-        type: "E-commerce",
+        title: "INEGI Design System",
+        type: "Design System",
         description:
-          "Premium platform with fast checkout, operations panel and real-time analytics.",
+          "Co-created a React component library with Storybook and Styled Components to standardize UI across internal systems.",
       },
       {
-        title: "Nebula Analytics",
-        type: "Data",
+        title: "BPMN Flow Engine",
+        type: "Automation",
         description:
-          "Strategic dashboard with modular visualization, live alerts and insight layers.",
+          "Built a dynamic diagram renderer with BPMN.io + React that generates workflows from JSON.",
       },
       {
-        title: "Astra Fitness",
-        type: "Mobile",
+        title: "Ptracking Performance",
+        type: "GovTech",
         description:
-          "Habit app with personalized coaching, micro animations and onboarding flow.",
+          "Cut load time by 90% using server-side filtering and optimized pagination for evidence management.",
       },
       {
-        title: "Atlas Travel",
-        type: "Web",
+        title: "Comunidad Informatica",
+        type: "Portal",
         description:
-          "Platform redesign for bookings with emphasis on speed and conversion.",
+          "Delivered a data visualization portal with Apache ECharts and secure NAS file previews.",
       },
       {
-        title: "Studio Brand Core",
-        type: "Brand",
+        title: "SNI Research Registry",
+        type: "Data Platform",
         description:
-          "Visual system with usage guides, components and assets for product teams.",
+          "Designed and normalized the SQL schema for the state researcher registry, improving reporting integrity.",
       },
       {
-        title: "Lumen Dashboard",
-        type: "SaaS",
+        title: "QR Ticketing System",
+        type: "Event Tech",
         description:
-          "Operational panel with secure flows, empty states and fast analysis modes.",
+          "Developed a digital ticketing system with Angular and Node.js using dynamic QR codes.",
       },
     ],
   },
   tech: {
     eyebrow: "Technologies",
-    title: "Creative & technical stack",
+    title: "Full stack toolkit",
     subtitle:
-      "I use modern tools to build fluid, scalable experiences with their own identity.",
+      "Modern web, data, and automation stack with AI-assisted workflows.",
     cards: [
       {
-        title: "Process",
+        title: "Frontend systems",
         description:
-          "Discovery, prototypes and early validation for data-driven decisions.",
+          "React, Angular, Storybook, and Styled Components for scalable UI architecture.",
       },
       {
-        title: "Systems",
+        title: "Backend & data",
         description:
-          "Design tokens, libraries and documentation ready for distributed teams.",
+          ".NET Core, Node.js, SQL Server, and GraphQL for robust APIs and data integrity.",
       },
       {
-        title: "Delivery",
+        title: "Delivery & DevOps",
         description:
-          "Clean components optimized for performance and clear handoff.",
+          "Azure DevOps, Docker, Git, and Scrum to ship with quality and speed.",
       },
     ],
   },
   contact: {
     eyebrow: "Contact",
-    title: "Ready for a new launch",
-    subtitle: "Let's talk about product, design or frontend development.",
-    heading: "Let's turn ideas into solid experiences.",
-    body: "I'm available for freelance projects, product teams and UX/UI consulting. I respond quickly with clear proposals.",
+    title: "Ready for the next release",
+    subtitle: "Open to full stack roles and collaborative projects.",
+    heading: "Let's build reliable web platforms.",
+    body: "Available for product teams and data-driven web projects. Fast response, clear scope, and measurable results.",
     sendEmail: "Send email",
     openWhatsApp: "Open WhatsApp",
     open: "Open",
     email: "Email",
+    phone: "Phone",
+    linkedin: "LinkedIn",
     whatsApp: "WhatsApp",
     directChat: "Direct chat",
   },
   secret: {
-    hint: "Secret active. Tap the profile core.",
+    hint: "Secret active. Type the word orbit.",
   },
 };
 
@@ -127,110 +147,130 @@ const es = {
     close: "Cerrar",
   },
   hero: {
-    greeting: "Hola, soy Basher",
-    title: "UX/UI Designer y Frontend Engineer",
-    bio: "Diseno y construyo productos digitales con un sistema claro, identidad visual fuerte y codigo limpio. El objetivo es simple: interfaces que se sienten premium y responden rapido.",
+    greeting: "Hola, soy Brayan Ulises",
+    title: "Full Stack Developer | React, Node.js y SQL",
+    bio: "Ingeniero en Sistemas Computacionales con mas de 3 anos de experiencia en el ciclo completo de desarrollo con JavaScript y .NET. Enfocado en interfaces escalables, optimizacion de rendimiento y arquitectura de datos SQL. Actualmente curso la Maestria en Analisis Estadistico y Computacional (Ciencia de Datos) en CIMAT. Basado en Aguascalientes, Mexico.",
     cardCaption:
-      "UX, UI, estrategia y codigo con foco en claridad, rendimiento y valor de producto.",
+      "Full stack, arquitectura UI, optimizacion de rendimiento y diseno de datos SQL.",
+    photoAlt: "Retrato de Brayan Ulises",
     viewProjects: "Ver proyectos",
     directContact: "Contacto directo",
-    nebulaMode: "Nebula mode active",
-    openCollab: "Abierto a nuevas colaboraciones",
+    nebulaMode: "Modo signal activo",
+    openCollab: "Disponible para roles full stack y colaboraciones",
     skills: [
-      "Product strategy",
-      "Design systems",
-      "React engineering",
-      "Motion design",
+      "Full stack React + Node",
+      "SQL Server y diseno de datos",
+      "APIs con GraphQL",
+      "Desarrollo con IA y agentes",
+    ],
+    highlights: [
+      {
+        title: "Design system INEGI",
+        description:
+          "Libreria en React + Storybook que unifico UI en apps internas.",
+      },
+      {
+        title: "Ptracking performance",
+        description:
+          "90% menos tiempo de carga con filtrado y paginacion optimizada.",
+      },
+      {
+        title: "Plataforma SNI",
+        description:
+          "Esquema SQL normalizado para mejorar integridad y reportes.",
+      },
     ],
     stats: {
-      experience: "Experiencia",
-      clients: "Clientes",
-      projects: "Proyectos",
-      awards: "Premios",
+      experience: "Anos experiencia",
+      clients: "Organizaciones",
+      projects: "Proyectos clave",
+      awards: "Grados",
     },
   },
   projects: {
     eyebrow: "Proyectos",
-    title: "Galeria de trabajos destacados",
+    title: "Trabajo destacado en ingenieria",
     subtitle:
-      "Una seleccion curada de productos digitales, dashboards y sistemas visuales con foco en impacto y claridad.",
+      "Soluciones para sector publico y privado con foco en rendimiento, automatizacion y datos claros.",
     items: [
       {
-        title: "Orion Commerce Suite",
-        type: "E-commerce",
+        title: "Design System INEGI",
+        type: "Design System",
         description:
-          "Plataforma premium con checkout rapido, panel de operaciones y analitica en tiempo real.",
+          "Co-cree la libreria de componentes en React con Storybook y Styled Components para estandarizar UI en sistemas internos.",
       },
       {
-        title: "Nebula Analytics",
-        type: "Data",
+        title: "Motor BPMN",
+        type: "Automatizacion",
         description:
-          "Dashboard estrategico con visualizacion modular, alertas en vivo y capas de insight.",
+          "Construccion de un render de diagramas con BPMN.io + React desde definiciones JSON.",
       },
       {
-        title: "Astra Fitness",
-        type: "Mobile",
+        title: "Ptracking Performance",
+        type: "GovTech",
         description:
-          "App de habitos con coaching personalizado, micro animaciones y flujo de onboarding.",
+          "Reduje el tiempo de carga 90% con filtrado del lado del servidor y paginacion optimizada.",
       },
       {
-        title: "Atlas Travel",
-        type: "Web",
+        title: "Comunidad Informatica",
+        type: "Portal",
         description:
-          "Redisenio de plataforma para reservas con enfasis en velocidad y conversion.",
+          "Portal con visualizacion de datos en Apache ECharts y gestion segura de archivos NAS.",
       },
       {
-        title: "Studio Brand Core",
-        type: "Brand",
+        title: "Padron de Investigadores SNI",
+        type: "Datos",
         description:
-          "Sistema visual con guias de uso, componentes y activos para equipos de producto.",
+          "Diseno y normalizacion del esquema SQL para mejorar integridad y reportes.",
       },
       {
-        title: "Lumen Dashboard",
-        type: "SaaS",
+        title: "Ticketing QR",
+        type: "Eventos",
         description:
-          "Panel operativo con flujos seguros, estados vacios y modos de analisis rapido.",
+          "Sistema de tickets digitales con Angular y Node.js y QR dinamicos.",
       },
     ],
   },
   tech: {
     eyebrow: "Tecnologias",
-    title: "Stack creativo y tecnico",
+    title: "Stack tecnico full stack",
     subtitle:
-      "Uso herramientas modernas para construir experiencias fluidas, escalables y con identidad propia.",
+      "Herramientas modernas para web, datos, automatizacion e IA.",
     cards: [
       {
-        title: "Proceso",
+        title: "Frontend y UI",
         description:
-          "Discovery, prototipos y validacion temprana para tomar decisiones con datos.",
+          "React, Angular, Storybook y Styled Components para arquitectura UI escalable.",
       },
       {
-        title: "Sistemas",
+        title: "Backend y datos",
         description:
-          "Design tokens, librerias y documentacion lista para equipos distribuidos.",
+          ".NET Core, Node.js, SQL Server y GraphQL para APIs y datos confiables.",
       },
       {
-        title: "Entrega",
+        title: "Entrega y DevOps",
         description:
-          "Componentes limpios, optimizados para rendimiento y handoff claro.",
+          "Azure DevOps, Docker, Git y Scrum para calidad y velocidad de entrega.",
       },
     ],
   },
   contact: {
     eyebrow: "Contacto",
-    title: "Listo para un nuevo lanzamiento",
-    subtitle: "Conversemos sobre producto, diseno o desarrollo frontend.",
-    heading: "Transformemos ideas en experiencias solidas.",
-    body: "Estoy disponible para proyectos freelance, equipos de producto y consultoria UX/UI. Respondo rapido y con propuestas claras.",
+    title: "Listo para el siguiente release",
+    subtitle: "Abierto a roles full stack y proyectos colaborativos.",
+    heading: "Construyamos plataformas web solidas.",
+    body: "Disponible para equipos de producto y proyectos data-driven. Respuesta rapida, alcance claro y resultados medibles.",
     sendEmail: "Enviar correo",
     openWhatsApp: "Abrir WhatsApp",
     open: "Abrir",
     email: "Correo",
+    phone: "Telefono",
+    linkedin: "LinkedIn",
     whatsApp: "WhatsApp",
     directChat: "Chat directo",
   },
   secret: {
-    hint: "Secreto activo. Toca el nucleo del perfil.",
+    hint: "Secreto activo. Escribe la palabra orbit.",
   },
 };
 

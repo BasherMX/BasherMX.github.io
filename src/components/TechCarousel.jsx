@@ -46,7 +46,15 @@ const TechCarousel = ({ items }) => {
             className="glass smooth flex min-w-[160px] items-center gap-3 rounded-2xl px-4 py-3"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-accent-400/40 bg-white/5 text-xs font-semibold uppercase tracking-[0.2em] text-accent-400">
-              {item.short}
+              {item.logo ? (
+                <img
+                  src={item.logo}
+                  alt={item.logoAlt || item.name}
+                  className="h-6 w-6 object-contain"
+                />
+              ) : (
+                <span>{item.short}</span>
+              )}
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-white">
