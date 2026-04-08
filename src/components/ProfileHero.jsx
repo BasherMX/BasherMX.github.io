@@ -1,4 +1,9 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "../i18n";
 import { useParallax } from "../hooks/useParallax";
@@ -114,7 +119,11 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.35),rgba(5,4,10,0.1))]" />
                 <motion.div
                   className="absolute -right-12 top-8 h-36 w-36 rounded-full border border-white/10 bg-white/5"
-                  style={prefersReducedMotion ? {} : { rotate: ringRotate, scale: ringScale }}
+                  style={
+                    prefersReducedMotion
+                      ? {}
+                      : { rotate: ringRotate, scale: ringScale }
+                  }
                 />
                 <div className="absolute inset-6 rounded-[24px] border border-white/10 bg-white/5" />
                 <div
@@ -131,7 +140,9 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
                 </div>
                 <motion.div
                   className="absolute -right-6 top-12 h-20 w-20 rounded-full border border-accent-400/40 bg-accent-500/20 blur-2xl"
-                  animate={prefersReducedMotion ? undefined : { y: [0, -12, 0] }}
+                  animate={
+                    prefersReducedMotion ? undefined : { y: [0, -12, 0] }
+                  }
                   transition={
                     prefersReducedMotion
                       ? undefined

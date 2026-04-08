@@ -31,7 +31,16 @@ const IconLinkedIn = ({ className = "h-4 w-4" }) => (
     aria-hidden="true"
     fill="currentColor"
   >
-    <rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
     <rect x="7" y="10" width="2.6" height="7" />
     <circle cx="8.3" cy="7.5" r="1.3" />
     <path d="M12 10h2.2a3 3 0 0 1 3 3v4H15v-4a1.6 1.6 0 0 0-1.6-1.6H12V17H9.5v-7H12z" />

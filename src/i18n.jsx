@@ -234,8 +234,7 @@ const es = {
   tech: {
     eyebrow: "Tecnologias",
     title: "Stack tecnico full stack",
-    subtitle:
-      "Herramientas modernas para web, datos, automatizacion e IA.",
+    subtitle: "Herramientas modernas para web, datos, automatizacion e IA.",
     cards: [
       {
         title: "Frontend y UI",

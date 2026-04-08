@@ -35,9 +35,7 @@ const ProjectGrid = ({ items }) => {
                 <h3 className="font-heading text-lg text-white">
                   {project.title}
                 </h3>
-                <p className="text-sm text-white/70">
-                  {project.description}
-                </p>
+                <p className="text-sm text-white/70">{project.description}</p>
               </div>
               <div className="mt-auto flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
