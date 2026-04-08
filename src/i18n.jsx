@@ -133,7 +133,7 @@ const en = {
     directChat: "Direct chat",
   },
   secret: {
-    hint: "Secret active. Type the word orbit.",
+    hint: "Secret active. Type the words black hole.",
   },
 };
 
@@ -269,7 +269,7 @@ const es = {
     directChat: "Chat directo",
   },
   secret: {
-    hint: "Secreto activo. Escribe la palabra orbit.",
+    hint: "Secreto activo. Escribe las palabras black hole.",
   },
 };
 

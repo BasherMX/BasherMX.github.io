@@ -116,7 +116,6 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
                   aria-label={t("hero.photoAlt")}
                   style={{ backgroundImage: `url(${profileImage})` }}
                 />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.35),rgba(5,4,10,0.1))]" />
                 <motion.div
                   className="absolute -right-12 top-8 h-36 w-36 rounded-full border border-white/10 bg-white/5"
                   style={
@@ -125,7 +124,6 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
                       : { rotate: ringRotate, scale: ringScale }
                   }
                 />
-                <div className="absolute inset-6 rounded-[24px] border border-white/10 bg-white/5" />
                 <div
                   className={`absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[11px] uppercase tracking-[0.3em] text-white/70 ${
                     pulse ? "glow-ring" : ""

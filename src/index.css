@@ -128,3 +128,82 @@ body {
     #ce1126 66.66% 100%
   );
 }
+
+.black-hole-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 30;
+}
+
+.black-hole-core {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  z-index: 2;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(20, 20, 20, 0.9) 0%,
+    #000 45%,
+    #000 62%,
+    rgba(0, 0, 0, 0.85) 72%,
+    transparent 74%
+  );
+  box-shadow:
+    0 0 60px rgba(0, 0, 0, 0.85),
+    0 0 140px rgba(0, 0, 0, 0.7);
+}
+
+.black-hole-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.95) 65%,
+    #000 100%
+  );
+  z-index: 0;
+}
+
+.black-hole-ring {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  z-index: 1;
+  background: conic-gradient(
+    from 120deg,
+    rgba(192, 132, 252, 0.05),
+    rgba(255, 255, 255, 0.3),
+    rgba(192, 132, 252, 0.1),
+    rgba(0, 0, 0, 0)
+  );
+  filter: blur(1px);
+  opacity: 0.7;
+}
+
+.black-hole-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    rgba(0, 0, 0, 0)
+  );
+  mix-blend-mode: screen;
+}
+
+.whiteout-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 40;
+}

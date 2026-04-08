@@ -6,19 +6,19 @@ import {
 } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
-const buildShootingStars = (count = 2) =>
+const buildShootingStars = (count = 2, intense = false) =>
   Array.from({ length: count }).map((_, index) => ({
     id: `${Date.now()}-${index}`,
     top: Math.random() * 70 + 6,
     left: Math.random() * 60 + 6,
-    length: Math.random() * 120 + 80,
-    travel: Math.random() * 180 + 120,
-    delay: Math.random() * 1.5,
-    duration: Math.random() * 1.6 + 1.1,
+    length: Math.random() * (intense ? 180 : 120) + 80,
+    travel: Math.random() * (intense ? 260 : 180) + 120,
+    delay: Math.random() * (intense ? 0.6 : 1.5),
+    duration: Math.random() * (intense ? 1.1 : 1.6) + (intense ? 0.6 : 1.1),
     angle: Math.random() * 18 + 20,
   }));
 
-const Starfield = ({ active }) => {
+const Starfield = ({ active, storm }) => {
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const drift = useTransform(scrollYProgress, [0, 1], [0, -80]);
@@ -40,7 +40,7 @@ const Starfield = ({ active }) => {
     [],
   );
   const [shootingStars, setShootingStars] = useState(() =>
-    buildShootingStars(2),
+    buildShootingStars(storm ? 12 : 2, storm),
   );
 
   useEffect(() => {
@@ -48,16 +48,21 @@ const Starfield = ({ active }) => {
     let timeoutId;
 
     const schedule = () => {
-      const delay = Math.random() * 6000 + 4000;
+      const delay = storm ? 900 : Math.random() * 6000 + 4000;
       timeoutId = setTimeout(() => {
-        setShootingStars(buildShootingStars(2));
+        setShootingStars(buildShootingStars(storm ? 12 : 2, storm));
         schedule();
       }, delay);
     };
 
     schedule();
     return () => clearTimeout(timeoutId);
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, storm]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    setShootingStars(buildShootingStars(storm ? 12 : 2, storm));
+  }, [prefersReducedMotion, storm]);
 
   const containerStyle = prefersReducedMotion ? {} : { y: drift };
 

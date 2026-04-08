@@ -80,10 +80,16 @@ const IconX = ({ className = "h-4 w-4" }) => (
 function App() {
   const { t, lang, toggle } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [easterMode, setEasterMode] = useState(false);
+  const [easterPhase, setEasterPhase] = useState("idle");
+  const [easterKey, setEasterKey] = useState(0);
   const [signalUnlocked, setSignalUnlocked] = useState(false);
   const [signalClicks, setSignalClicks] = useState(0);
   const keyBuffer = useRef("");
+  const secretPhrase = "black hole";
+  const isEasterActive = easterPhase !== "idle";
+  const isStarBurst = easterPhase === "burst";
+  const isBlackHole = easterPhase === "suck";
+  const isWhiteout = easterPhase === "whiteout";
 
   const navItems = useMemo(
     () => [
@@ -122,6 +128,13 @@ function App() {
         role: "UI",
         logo: "/assets/tech/react.webp",
         logoAlt: "React logo",
+      },
+      {
+        name: "TypeScript",
+        short: "TS",
+        role: "Types",
+        logo: "/assets/tech/typescript.png",
+        logoAlt: "TypeScript logo",
       },
       {
         name: "Node.js",
@@ -180,6 +193,13 @@ function App() {
         logoAlt: "Docker logo",
       },
       {
+        name: "Podman",
+        short: "PD",
+        role: "DevOps",
+        logo: "/assets/tech/podman.png",
+        logoAlt: "Podman logo",
+      },
+      {
         name: "Storybook",
         short: "SB",
         role: "UI",
@@ -235,24 +255,49 @@ function App() {
     });
   }, []);
 
-  const handleSecretToggle = useCallback(() => {
-    setEasterMode((prev) => !prev);
+  const triggerEasterEgg = useCallback(() => {
+    setEasterPhase((prev) => (prev === "idle" ? "burst" : prev));
   }, []);
+
+  useEffect(() => {
+    if (easterPhase === "burst") {
+      setEasterKey((prev) => prev + 1);
+    }
+  }, [easterPhase]);
+
+  useEffect(() => {
+    if (easterPhase === "burst") {
+      const timer = setTimeout(() => setEasterPhase("suck"), 1800);
+      return () => clearTimeout(timer);
+    }
+    if (easterPhase === "suck") {
+      const timer = setTimeout(() => setEasterPhase("whiteout"), 2000);
+      return () => clearTimeout(timer);
+    }
+    if (easterPhase === "whiteout") {
+      const timer = setTimeout(() => setEasterPhase("idle"), 1200);
+      return () => clearTimeout(timer);
+    }
+    return undefined;
+  }, [easterPhase]);
 
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
       const key = event.key.toLowerCase();
       if (key.length !== 1) return;
-      keyBuffer.current = (keyBuffer.current + key).slice(-5);
-      if (keyBuffer.current === "orbit") {
-        setEasterMode((prev) => !prev);
+      keyBuffer.current = (keyBuffer.current + key).slice(
+        -secretPhrase.length,
+      );
+      if (keyBuffer.current === secretPhrase) {
+        triggerEasterEgg();
+        keyBuffer.current = "";
       }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [secretPhrase, triggerEasterEgg]);
 
   useEffect(() => {
     if (!signalUnlocked) return;
@@ -271,14 +316,97 @@ function App() {
     return () => window.removeEventListener("resize", onResize);
   }, [menuOpen]);
 
+  const contentVariants = {
+    idle: {
+      opacity: 1,
+      scaleX: 1,
+      scaleY: 1,
+      rotate: 0,
+      skewX: 0,
+      skewY: 0,
+      filter: "blur(0px)",
+    },
+    burst: {
+      opacity: 1,
+      scaleX: 1,
+      scaleY: 1,
+      rotate: 0,
+      skewX: 0,
+      skewY: 0,
+      filter: "blur(0px)",
+    },
+    suck: {
+      opacity: 0.08,
+      scaleX: 0.2,
+      scaleY: 1.35,
+      rotate: 8,
+      skewX: 12,
+      skewY: 2,
+      filter: "blur(5px)",
+      transition: { duration: 1.6, ease: [0.22, 0.61, 0.36, 1] },
+    },
+    whiteout: {
+      opacity: 0,
+      scaleX: 0.15,
+      scaleY: 1.4,
+      rotate: 10,
+      skewX: 14,
+      skewY: 4,
+      filter: "blur(8px)",
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <div
       className={`min-h-screen text-white ${
-        easterMode ? "nebula-on" : "space-bg"
+        isEasterActive ? "nebula-on" : "space-bg"
       } font-body`}
     >
-      <Starfield active={easterMode} />
-      <div className="relative z-10 flex min-h-screen flex-col">
+      <Starfield active={isEasterActive} storm={isStarBurst} />
+      {isBlackHole && (
+        <div className="black-hole-overlay">
+          <motion.div
+            className="black-hole-veil"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          />
+          <motion.div
+            key={`black-hole-core-${easterKey}`}
+            className="black-hole-core"
+            initial={{ scale: 0.6, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+          <motion.div
+            className="black-hole-ring"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="black-hole-glow"
+            animate={{ opacity: [0.2, 0.6, 0.2] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+      )}
+      {isWhiteout && (
+        <motion.div
+          key={`whiteout-${easterKey}`}
+          className="whiteout-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
+        />
+      )}
+      <motion.div
+        className="relative z-10 flex min-h-screen flex-col"
+        variants={contentVariants}
+        animate={easterPhase}
+        transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+        style={{ transformOrigin: "50% 45%" }}
+      >
         <header className="px-6 pt-6 sm:px-10 lg:px-16">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <div className="flex items-center gap-3">
@@ -371,8 +499,8 @@ function App() {
         </header>
         <main className="flex flex-1 flex-col gap-16">
           <ProfileHero
-            onSecretTap={handleSecretToggle}
-            secretActive={easterMode}
+            onSecretTap={triggerEasterEgg}
+            secretActive={isEasterActive}
           />
           <ParallaxSection id="proyectos" className="px-6 sm:px-10 lg:px-16">
             <div className="mx-auto flex max-w-6xl flex-col gap-10">
@@ -521,7 +649,7 @@ function App() {
             </div>
           </div>
         </footer>
-      </div>
+      </motion.div>
     </div>
   );
 }
