@@ -286,9 +286,7 @@ function App() {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
       const key = event.key.toLowerCase();
       if (key.length !== 1) return;
-      keyBuffer.current = (keyBuffer.current + key).slice(
-        -secretPhrase.length,
-      );
+      keyBuffer.current = (keyBuffer.current + key).slice(-secretPhrase.length);
       if (keyBuffer.current === secretPhrase) {
         triggerEasterEgg();
         keyBuffer.current = "";
