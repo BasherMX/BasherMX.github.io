@@ -20,7 +20,7 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
       { label: t("hero.stats.projects"), value: 120 },
       { label: t("hero.stats.awards"), value: 6 },
     ],
-    [t]
+    [t],
   );
 
   const [counts, setCounts] = useState(() => stats.map(() => 0));
@@ -103,15 +103,11 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
                 Active
               </div>
               <div className="absolute bottom-6 left-6 right-6 glass-light rounded-2xl p-4">
-                <p className="text-sm text-white/70">
-                  {t("hero.cardCaption")}
-                </p>
+                <p className="text-sm text-white/70">{t("hero.cardCaption")}</p>
               </div>
               <motion.div
                 className="absolute -right-6 top-12 h-20 w-20 rounded-full border border-accent-400/40 bg-accent-500/20 blur-2xl"
-                animate={
-                  prefersReducedMotion ? undefined : { y: [0, -12, 0] }
-                }
+                animate={prefersReducedMotion ? undefined : { y: [0, -12, 0] }}
                 transition={
                   prefersReducedMotion
                     ? undefined

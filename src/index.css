@@ -36,15 +36,31 @@ body {
 
 .space-bg {
   background:
-    radial-gradient(70% 50% at 70% 20%, rgba(168, 85, 247, 0.18), rgba(5, 4, 10, 0)),
-    radial-gradient(40% 35% at 20% 10%, rgba(88, 61, 255, 0.15), rgba(5, 4, 10, 0)),
+    radial-gradient(
+      70% 50% at 70% 20%,
+      rgba(168, 85, 247, 0.18),
+      rgba(5, 4, 10, 0)
+    ),
+    radial-gradient(
+      40% 35% at 20% 10%,
+      rgba(88, 61, 255, 0.15),
+      rgba(5, 4, 10, 0)
+    ),
     linear-gradient(180deg, #05040a 0%, #07050f 45%, #0b0815 100%);
 }
 
 .nebula-on {
   background:
-    radial-gradient(90% 70% at 65% 20%, rgba(168, 85, 247, 0.28), rgba(5, 4, 10, 0)),
-    radial-gradient(50% 45% at 20% 80%, rgba(99, 102, 241, 0.18), rgba(5, 4, 10, 0)),
+    radial-gradient(
+      90% 70% at 65% 20%,
+      rgba(168, 85, 247, 0.28),
+      rgba(5, 4, 10, 0)
+    ),
+    radial-gradient(
+      50% 45% at 20% 80%,
+      rgba(99, 102, 241, 0.18),
+      rgba(5, 4, 10, 0)
+    ),
     linear-gradient(180deg, #05040a 0%, #090615 40%, #12091f 100%);
 }
 

@@ -11,7 +11,7 @@ export const useParallax = (targetRef, distance = 50, opacityMin = 0.6) => {
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.3, 1],
-    [opacityMin, 1, 0.9]
+    [opacityMin, 1, 0.9],
   );
 
   if (prefersReducedMotion) {

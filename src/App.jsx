@@ -38,7 +38,7 @@ function App() {
       { label: t("nav.tech"), href: "#tecnologias" },
       { label: t("nav.contact"), href: "#contacto" },
     ],
-    [t]
+    [t],
   );
 
   const projectYears = ["2024", "2023", "2023", "2022", "2022", "2021"];
@@ -73,7 +73,7 @@ function App() {
       { name: "PostCSS", short: "PC", role: "Tools" },
       { name: "Supabase", short: "SB", role: "Data" },
     ],
-    []
+    [],
   );
 
   const contactLinks = useMemo(
@@ -91,11 +91,10 @@ function App() {
       {
         label: t("contact.whatsApp"),
         value: t("contact.directChat"),
-        href:
-          "https://wa.me/4492777186?text=Hola%20me%20gustaria%20hablar%20de%20un%20proyecto",
+        href: "https://wa.me/4492777186?text=Hola%20me%20gustaria%20hablar%20de%20un%20proyecto",
       },
     ],
-    [t]
+    [t],
   );
 
   const handleSignalClick = useCallback(() => {
@@ -279,7 +278,10 @@ function App() {
               </div>
             </div>
           </ParallaxSection>
-          <ParallaxSection id="contacto" className="px-6 pb-20 sm:px-10 lg:px-16">
+          <ParallaxSection
+            id="contacto"
+            className="px-6 pb-20 sm:px-10 lg:px-16"
+          >
             <div className="mx-auto flex max-w-6xl flex-col gap-10">
               <SectionHeading
                 eyebrow={t("contact.eyebrow")}
@@ -321,7 +323,11 @@ function App() {
                       rel="noreferrer"
                       className="glass-light smooth flex items-center justify-between rounded-2xl px-5 py-4"
                       whileHover={{ y: -4 }}
-                      transition={{ type: "spring", stiffness: 180, damping: 18 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 180,
+                        damping: 18,
+                      }}
                     >
                       <div className="flex flex-col">
                         <span className="text-xs uppercase tracking-[0.3em] text-white/50">

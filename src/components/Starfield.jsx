@@ -1,4 +1,9 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useMemo } from "react";
 
 const Starfield = ({ active }) => {
@@ -18,7 +23,7 @@ const Starfield = ({ active }) => {
         scale: Math.random() * 1.4 + 0.6,
         blur: Math.random() * 2,
       })),
-    []
+    [],
   );
 
   const streaks = useMemo(
@@ -30,7 +35,7 @@ const Starfield = ({ active }) => {
         delay: Math.random() * 6,
         duration: Math.random() * 4 + 6,
       })),
-    []
+    [],
   );
 
   const containerStyle = prefersReducedMotion ? {} : { y: drift };
