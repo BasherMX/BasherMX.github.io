@@ -4,6 +4,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { gsap } from "gsap";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "../i18n";
 import { useParallax } from "../hooks/useParallax";
@@ -14,8 +15,12 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
   const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
+  const shineRef = useRef(null);
   const statsRef = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const rotateXTo = useRef(null);
+  const rotateYTo = useRef(null);
+  const shineXTo = useRef(null);
+  const shineYTo = useRef(null);
   const [pulse, setPulse] = useState(false);
   const sectionStyle = useParallax(sectionRef, 60);
   const cardStyle = useParallax(cardRef, 32);
@@ -40,6 +45,50 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
   );
 
   const [counts, setCounts] = useState(() => stats.map(() => 0));
+
+  useEffect(() => {
+    if (prefersReducedMotion || !cardRef.current) return undefined;
+
+    const cardNode = cardRef.current;
+    const shineNode = shineRef.current;
+
+    gsap.set(cardNode, {
+      transformPerspective: 950,
+      transformStyle: "preserve-3d",
+      willChange: "transform",
+    });
+
+    if (shineNode) {
+      gsap.set(shineNode, { xPercent: -50, yPercent: -50, x: "50%", y: "50%" });
+      shineXTo.current = gsap.quickTo(shineNode, "x", {
+        duration: 0.28,
+        ease: "power3.out",
+      });
+      shineYTo.current = gsap.quickTo(shineNode, "y", {
+        duration: 0.28,
+        ease: "power3.out",
+      });
+    }
+
+    rotateXTo.current = gsap.quickTo(cardNode, "rotateX", {
+      duration: 0.32,
+      ease: "power3.out",
+    });
+    rotateYTo.current = gsap.quickTo(cardNode, "rotateY", {
+      duration: 0.32,
+      ease: "power3.out",
+    });
+
+    return () => {
+      rotateXTo.current = null;
+      rotateYTo.current = null;
+      shineXTo.current = null;
+      shineYTo.current = null;
+      gsap.killTweensOf(cardNode);
+      if (shineNode) gsap.killTweensOf(shineNode);
+      gsap.set(cardNode, { clearProps: "willChange" });
+    };
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -69,13 +118,25 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
   const handlePointerMove = useCallback((event) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -10;
-    setTilt({ x, y });
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -12;
+    rotateXTo.current?.(y);
+    rotateYTo.current?.(x);
+
+    const localX = event.clientX - rect.left;
+    const localY = event.clientY - rect.top;
+    shineXTo.current?.(localX);
+    shineYTo.current?.(localY);
   }, []);
 
   const handlePointerLeave = useCallback(() => {
-    setTilt({ x: 0, y: 0 });
+    rotateXTo.current?.(0);
+    rotateYTo.current?.(0);
+
+    const node = cardRef.current;
+    if (!node) return;
+    shineXTo.current?.(node.clientWidth * 0.5);
+    shineYTo.current?.(node.clientHeight * 0.5);
   }, []);
 
   const handlePulse = useCallback(() => {
@@ -105,11 +166,14 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
               onPointerMove={handlePointerMove}
               onPointerLeave={handlePointerLeave}
               onDoubleClick={handlePulse}
-              animate={{ rotateX: tilt.y, rotateY: tilt.x }}
-              transition={{ type: "spring", stiffness: 140, damping: 16 }}
               style={{ transformStyle: "preserve-3d", ...cardStyle }}
             >
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-gradient-to-br from-space-800 via-space-900 to-space-950">
+                <div
+                  ref={shineRef}
+                  className="pointer-events-none absolute h-32 w-32 rounded-full bg-white/20 blur-2xl"
+                  aria-hidden="true"
+                />
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   role="img"
@@ -128,10 +192,14 @@ const ProfileHero = ({ onSecretTap, secretActive }) => {
                   className={`absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[11px] uppercase tracking-[0.3em] text-white/70 ${
                     pulse ? "glow-ring" : ""
                   }`}
+                  style={{ transform: "translateZ(28px)" }}
                 >
                   Active
                 </div>
-                <div className="absolute bottom-6 left-6 right-6 glass-light rounded-2xl p-4">
+                <div
+                  className="absolute bottom-6 left-6 right-6 glass-light rounded-2xl p-4"
+                  style={{ transform: "translateZ(38px)" }}
+                >
                   <p className="text-sm text-white/70">
                     {t("hero.cardCaption")}
                   </p>

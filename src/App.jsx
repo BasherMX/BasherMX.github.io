@@ -8,6 +8,16 @@ import ParallaxSection from "./components/ParallaxSection";
 import Reveal from "./components/Reveal";
 import { useI18n } from "./i18n";
 
+const PROJECT_YEARS = ["2024", "2024", "2024", "2024", "2023", "2022"];
+const PROJECT_TAGS = [
+  ["React", "Storybook", "Styled Components", "Design System"],
+  ["BPMN.io", "React", "JSON", "Automation"],
+  ["Node.js", "SQL", "Performance", "Pagination"],
+  ["React", "Apache ECharts", "NAS", "Blobs"],
+  ["SQL Server", "Data Modeling", "Normalization", "Data Quality"],
+  ["Angular", "Node.js", "QR", "Events"],
+];
+
 const SectionHeading = ({ eyebrow, title, subtitle, align = "left" }) => (
   <div
     className={`flex flex-col gap-3 ${
@@ -101,22 +111,12 @@ function App() {
     [t],
   );
 
-  const projectYears = ["2024", "2024", "2024", "2024", "2023", "2022"];
-  const projectTags = [
-    ["React", "Storybook", "Styled Components", "Design System"],
-    ["BPMN.io", "React", "JSON", "Automation"],
-    ["Node.js", "SQL", "Performance", "Pagination"],
-    ["React", "Apache ECharts", "NAS", "Blobs"],
-    ["SQL Server", "Data Modeling", "Normalization", "Data Quality"],
-    ["Angular", "Node.js", "QR", "Events"],
-  ];
-
   const projects = useMemo(() => {
     const items = t("projects.items");
     return items.map((item, index) => ({
       ...item,
-      year: projectYears[index],
-      tags: projectTags[index],
+      year: PROJECT_YEARS[index],
+      tags: PROJECT_TAGS[index],
     }));
   }, [t]);
 

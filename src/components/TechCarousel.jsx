@@ -51,6 +51,8 @@ const TechCarousel = ({ items }) => {
                   src={item.logo}
                   alt={item.logoAlt || item.name}
                   className="h-6 w-6 object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <span>{item.short}</span>

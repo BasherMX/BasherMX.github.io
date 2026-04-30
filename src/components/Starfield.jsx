@@ -22,9 +22,22 @@ const Starfield = ({ active, storm }) => {
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const drift = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const [starCount, setStarCount] = useState(() =>
+    typeof window !== "undefined" && window.innerWidth < 768 ? 64 : 96,
+  );
+
+  useEffect(() => {
+    const onResize = () => {
+      setStarCount(window.innerWidth < 768 ? 64 : 96);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const stars = useMemo(
     () =>
-      Array.from({ length: 120 }).map((_, index) => ({
+      Array.from({ length: starCount }).map((_, index) => ({
         id: index,
         size: Math.random() * 2 + 1,
         x: Math.random() * 100,
@@ -37,7 +50,7 @@ const Starfield = ({ active, storm }) => {
         driftX: Math.random() * 8 - 4,
         driftY: Math.random() * 8 - 4,
       })),
-    [],
+    [starCount],
   );
   const [shootingStars, setShootingStars] = useState(() =>
     buildShootingStars(storm ? 12 : 2, storm),

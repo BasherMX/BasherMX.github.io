@@ -1,4 +1,11 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  startTransition,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
 const en = {
   nav: {
@@ -294,14 +301,14 @@ export const I18nProvider = ({ children }) => {
   );
 
   const toggle = useCallback(() => {
-    setLang((prev) => (prev === "en" ? "es" : "en"));
+    startTransition(() => {
+      setLang((prev) => (prev === "en" ? "es" : "en"));
+    });
   }, []);
 
-  return (
-    <I18nContext.Provider value={{ lang, t, toggle }}>
-      {children}
-    </I18nContext.Provider>
-  );
+  const value = useMemo(() => ({ lang, t, toggle }), [lang, t, toggle]);
+
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 };
 
 export const useI18n = () => useContext(I18nContext);
